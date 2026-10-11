@@ -1,0 +1,53 @@
+import discord
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix='$', intents=intents)
+@bot.event
+async def on_ready():
+    print(f"Hai fatto l'accesso come {bot.user}")
+    print("Il bot ti può aiutare a capire come fare la raccolta differenziata...")
+@bot.command()
+async def bidone(ctx, ms2):
+    if ms2 == "carta":
+        await ctx.send("La carta va messa nel bidone giallo")
+    elif ms2 == "plastica":
+        await ctx.send("La plastica va messa nel bidone blu")
+    elif ms2 == "vetro":
+        await ctx.send("Il vetro va messo nel bidone verde")
+    elif ms2 == "umido":
+        await ctx.send("L'umido va messo nel bidone marrone")
+    elif ms2 == "indifferenziato":
+        await ctx.send("L'indifferenziato va messo nel bidone grigio")
+    else:
+        await ctx.send("Non ho informazioni su questo tipo di rifiuto.")
+@bot.command()
+async def info(ctx, ms2):
+    if ms2 == "carta":
+        await ctx.send("La carta è un materiale riciclabile che può essere trasformato in nuovi prodotti di carta.")
+    elif ms2 == "plastica":
+        await ctx.send("La plastica è un materiale riciclabile che può essere trasformato in nuovi prodotti di plastica.")
+    elif ms2 == "vetro":
+        await ctx.send("Il vetro è un materiale riciclabile che può essere trasformato in nuovi prodotti di vetro.")
+    elif ms2 == "umido":
+        await ctx.send("L'umido è costituito da rifiuti organici che possono essere compostati per produrre fertilizzante naturale.")
+    elif ms2 == "indifferenziato":
+        await ctx.send("L'indifferenziato è costituito da rifiuti che non possono essere riciclati e devono essere smaltiti in discarica o inceneriti.")
+    else:
+        await ctx.send("Non ho informazioni su questo tipo di rifiuto.")
+@bot.command()
+async def decomposizione(ctx, ms2):
+    if ms2 == "carta":
+        await ctx.send("La carta impiega circa 2-6 settimane per decomporsi completamente.")
+    elif ms2 == "plastica":
+        await ctx.send("La plastica può impiegare da 100 a 1000 anni per decomporsi completamente, a seconda del tipo di plastica.")
+    elif ms2 == "vetro":
+        await ctx.send("Il vetro è un materiale che non si decompone facilmente e può durare per migliaia di anni se non riciclato.")
+    elif ms2 == "umido":
+        await ctx.send("L'umido può decomporsi in poche settimane o mesi, a seconda delle condizioni ambientali.")
+    elif ms2 == "indifferenziato":
+        await ctx.send("L'indifferenziato può contenere materiali che impiegano molto tempo per decomporsi, come plastica e metalli, che possono durare centinaia di anni.")
+    else:    
+        await ctx.send("Non ho informazioni su questo tipo di rifiuto.")
+bot.run("Your TOKEN")
